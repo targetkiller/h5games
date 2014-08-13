@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<!-- 
+	game by @托尼托尼研究所
+    @author:TQ
+ -->
+<head>
+	<meta charset="UTF-8">
+	<title>托尼托尼点点点</title>
+    <meta name="description" content="">
+	<meta name="HandheldFriendly" content="True">
+	<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1, maximum-scale=1, user-scalable=no" />  
+	<meta name="apple-mobile-web-app-capable" content="yes">
+	<meta name="apple-mobile-web-app-status-bar-style" content="black">
+	<link rel="stylesheet" type="text/css" href="game.css">
+</head>
+<body>
+	<header><a href="javascript:void(0)" class="start">开始</a><span id="score" class="hide">0</span></header>
+	<table class="center" border="1">
+		<tr>
+			<td class="block"></td>
+			<td class="block"></td>
+			<td class="block"></td>
+		</tr>
+		<tr>
+			<td class="block"></td>
+			<td class="block"></td>
+			<td class="block"></td>
+		</tr>
+		<tr>
+			<td class="block"></td>
+			<td class="block"></td>
+			<td class="block"></td>
+		</tr>
+	</table>
+	<footer><div id="loader"></div><span class="time-wrap"><span id="time">15</span>s</span></footer>
+
+	<div class="result-wrap hide">
+		<p>你的得分是：<span id="result-score"></span><br>恭喜你击败了全国<span id="result-percent"></span>的人！</p>
+		<a href="javascript:void(0)" class="share-btn btn">晒给朋友看看</a>
+		<a href="javascript:void(0)" class="again btn">不服再战</a>
+		<div class="tonytony"></div>
+	</div>
+
+	<div class="start-wrap">
+		<h1>托尼托尼点点点</h1>
+		<p>游戏规则：15秒内点击出现的方块，点击越多越好！看谁能最高分？</p>
+		<a href="javascript:void(0)" class="go-btn btn">朕知道了</a>
+		<div class="tonytony"></div>
+	</div>
+
+	<div class="share-wrap hide">
+		<i class="share-narrow"></i>
+		<span class="txt">点这里分享出去吧</span>
+		<a class="cancel-btn btn">朕知道了</a>
+	</div>
+
+	<script src="js/zepto.js"></script>
+	<script src="js/touch.js"></script>
+	<script src="js/game.js"></script>
+</body>
+</html>

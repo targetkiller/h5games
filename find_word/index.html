@@ -1,0 +1,82 @@
+<!doctype html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta content="QQ空间" name="description">
+	<meta content="关键字" name="keywords">
+	<meta name="viewport" content="width=device-width, initial-scale=1,minimum-scale=1, maximum-scale=1, user-scalable=no" />
+	<title>史上最无聊的游戏，没有之一！</title>
+<style>
+html,body{overflow:hidden;background:#000;color:#aaa;font-size:26px;margin:0;}
+.game-area{position:relative;}
+.game-area .inner{width:320px;background:#111;position:relative;margin:0 auto;}
+.game-area .step{background:#000;height:30px;line-height:30px;color:#66D9EF;font-size:14px;}
+.game-area .step .step-info{display:inline-block;padding-left:10px;color:#F7E56A;}
+.game-area .step .step-life{position:absolute;right:10px;color:#fff;}
+.game-area .step .step-help{position:absolute;right:75px;color:#fff;}
+.game-area .step .step-word{display:inline-block;color:#fff;padding:0 10px;background:#3D3D3A;}
+.game-area .stage{padding:5px 0 0 5px;}
+.game-area .stage span{display:inline-block;margin:0 10px 10px 0;width:25px;text-align:center;}
+.tip{background:rgba(0,0,0,0.8);width:100%;margin:0 auto;position:absolute;height:100%;top:0;left:0;display:none;}
+.tip .tip-inner{background:#0D214D;width:280px;margin:0 auto;position:absolute;top:50%;left:50%;margin-left:-140px;margin-top:-50px;height:100px;line-height:40px;text-align: center;font-size:20px;padding-top:20px;}
+.tip .tip-inner .num{color:#FF0ACE;font-weight:bold;margin:0 5px;}
+.welcome{
+	background:rgba(0,0,0,1);width:100%;margin:0 auto;position:absolute;height:100%;top:0;left:0;;
+}
+.welcome .inner{font-size:30px;line-height:30px;color:#A6C628;text-align: center;display:block;position:absolute;top:50%;margin-top:-100px;width:100%;}
+
+.shake{  
+-webkit-animation-name:shake;  
+-webkit-animation-duration:0.5s;  
+-moz--name:shake;  
+-moz-animation-duration:0.5s;  
+}  
+
+@-webkit-keyframes shake {  
+    0%, 100% {-webkit-transform: translateX(0);}  
+    10%, 30%, 50%, 70%, 90% {-webkit-transform: translateX(-10px);}  
+    20%, 40%, 60%, 80% {-webkit-transform: translateX(10px);}  
+}  
+@-moz-keyframes shake {  
+    0%, 100% {-moz-transform: translateX(0);}  
+    10%, 30%, 50%, 70%, 90% {-moz-transform: translateX(-10px);}  
+    20%, 40%, 60%, 80% {-moz-transform: translateX(10px);}  
+}  
+</style>
+
+
+</head>
+<body>
+	<!-- <img src="img.jpg" style="position:absolute;z-index:-1;opacity:0; " /> -->
+	<div id="game_area" class="game-area">
+		<div class="inner">
+			<div class="step">
+				<span class="step-info"></span>
+				<span class="step-word"></span>
+				<span class="step-help"></span>
+				<span class="step-life"></span>
+				
+			</div>
+			<div class="stage"></div>
+			<div class="tip">
+				<div class="tip-inner">
+					<span class="tip-text">恭喜你突破</span>第<span class="num"></span>关！
+					<br />有胆挑战下一关！
+				</div>
+			</div>
+			<div class="welcome">
+				<div class="inner">
+					<p>史上最无聊的游戏</p>
+					<p>没有之一！</p>
+					<p style="color:#008BED;font-size:20px;">By 托尼托尼 万里阳光号</p>
+				</div>
+			</div>
+		</div>
+	</div>
+</body>
+
+<script src="zepto.min.js"></script>
+<script src="main-min.js?006"></script>
+
+</body>
+</html>

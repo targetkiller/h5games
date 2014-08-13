@@ -1,0 +1,196 @@
+<!doctype html>
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0">
+	<meta name="format-detection" content="telephone=no">
+	<meta name="author" content="tqtan">
+	<meta name="description" content="html5摇我游戏，刺激好玩，分享给朋友们吧～">
+	<meta name="keywords" content="html,,重力,声音,游戏,game,html5游戏">
+	<meta name="apple-mobile-web-app-status-bar-style" content="black">
+	<title>摇我！</title>
+	<style>
+		body{margin: 0;position: relative;background-color: #007777;}
+		#game{position: absolute;width: 320px;height: 320px;text-align: center;background-color: #fff;box-shadow:0 0 10px #333;
+			/*开启GPU*/
+			-webkit-transform: translateZ(0);
+		    -moz-transform: translateZ(0);
+		    -ms-transform: translateZ(0);
+		    -o-transform: translateZ(0);
+		    transform: translateZ(0);}
+		#game #tips{margin:80px 0 30px 0;}
+		#game #tips p{font-size: 38px;margin: 0 0 15px 0;}
+		#game #show{font-size: 24px;}
+		#game #show #score{color: red;}
+		#game #time{font-size: 24px;}
+		#game #time #rest{color: red;}
+		#game #rest,#game #score{vertical-align: middle;}
+		#restart,#start{position: absolute;top:80%;left:50%;-webkit-transform:translate(-50%,-50%);text-decoration: none;text-align: center;width: 120px;height: 60px;color: #fff;border: 1px solid #007777;border-radius: 8px;line-height: 60px;background-color: #007777;
+			font-size:22px;-webkit-transition:all .2s ease-out;-moz-transition:all .2s ease-out;transition:all .2s ease-out;}
+		#restart:hover,#start:hover{background-color: #008888;}
+		#game #result{position: absolute;top:30%;left:50%;-webkit-transform:translate(-50%,-50%);text-align: center;width: 320px;height: 60px;color: #007777;line-height: 60px;font-size:30px;margin: 0;}
+		#game #result #resultscore{color: red;}
+		#restart{top: 70%;}
+		#share{font-size: 18px;color: #ddd;}
+		#icon{width: 70px;height: auto;}
+	</style>
+</head>
+<body>
+	<div id="game">
+		<div id="tips" style="display:block"><p id="tipsword">20秒用力摇</p><img src="icon.jpg" id="icon" style="display:inline"/></div>
+		<p id="time" style="display:none">剩余时间: <span id="rest">20</span></p>
+		<p id="show" style="display:none">得分: <span id="score">0</span></p>
+		<p id="result" style="display:none">最终得分: <span id="resultscore">0</span><br /><span id="share">喜欢的分享给朋友一起比拼吧～</span></p>
+		<a href="javascript:void(0)" id="start" style="display:block">放马过来</a>
+		<a href="javascript:void(0)" id="restart" style="display:none">不服再来</a>
+	</div>
+	<script>
+		var Bwidth = document.body.scrollWidth;
+		var BHeight = document.body.scrollHeight;
+		var game = document.getElementById('game');
+		// var score = document.getElementById('score');
+		game.style.top = (BHeight-320)/2+"px";
+		game.style.left = (Bwidth-320)/2+"px";
+		var totalScore = 0;//得分
+		var direction = 1;//初始方向
+		var time = 20;//时间
+		var interval;
+		// 微信分享
+		var imgUrl = 'http://targetkiller.net/shakeme/icon.jpg';
+		var lineLink = 'http://targetkiller.net/shakeme/index.html';
+		var descContent = "让我们来比比手速，看谁摇得高分！";
+		var shareTitle = '摇我！';
+		var appid = '';
+
+		// 微信分享
+		function shareFriend() {
+		    WeixinJSBridge.invoke('sendAppMessage',{
+		        "appid": appid,
+		        "img_url": imgUrl,
+		        "img_width": "200",
+		        "img_height": "200",
+		        "link": lineLink,
+		        "desc": descContent,
+		        "title": shareTitle
+		    }, function(res) {
+		        //_report('send_msg', res.err_msg);
+		    })
+		}
+		function shareTimeline() {
+		    WeixinJSBridge.invoke('shareTimeline',{
+		        "img_url": imgUrl,
+		        "img_width": "200",
+		        "img_height": "200",
+		        "link": lineLink,
+		        "desc": descContent,
+		        "title": shareTitle
+		    }, function(res) {
+		           //_report('timeline', res.err_msg);
+		    });
+		}
+		function shareWeibo() {
+		    WeixinJSBridge.invoke('shareWeibo',{
+		        "content": descContent,
+		        "url": lineLink,
+		    }, function(res) {
+		        //_report('weibo', res.err_msg);
+		    });
+		}
+		// 当微信内置浏览器完成内部初始化后会触发WeixinJSBridgeReady事件。
+		document.addEventListener('WeixinJSBridgeReady', function onBridgeReady() {
+		    // 发送给好友
+		    WeixinJSBridge.on('menu:share:appmessage', function(argv){
+		        shareFriend();
+		    });
+		    // 分享到朋友圈
+		    WeixinJSBridge.on('menu:share:timeline', function(argv){
+		        shareTimeline();
+		    });
+		    // 分享到微博
+		    WeixinJSBridge.on('menu:share:weibo', function(argv){
+		        shareWeibo();
+		    });
+		}, false);
+
+		// 重力感应
+		function Orientation(selector) {
+			          
+		}
+
+		Orientation.prototype.init = function(){
+		    window.addEventListener('deviceorientation', this.orientationListener, false);
+		}
+
+		Orientation.prototype.orientationListener = function(evt) {
+	 	    var gamma = evt.gamma
+		    var beta = evt.beta
+		    var alpha = evt.alpha
+		    var nowDir = 1;
+			if(beta<0){
+		   		nowDir = 1;
+		    }
+		    else{
+				nowDir = -1;
+			}
+
+			if(nowDir !== direction)
+			{
+				direction = -(direction);
+				totalScore += 1;
+				document.getElementById('score').innerText = totalScore;
+			}
+		}
+
+		// 更新时间
+		function update(){
+			time--;
+			if(time>0){
+				document.getElementById('rest').innerText = time;
+				document.getElementById('score').innerText = totalScore;
+			}
+			// 结束游戏
+			else{
+				console.log("no");
+				shareTitle="这游戏根本就停不下来！我摇出了"+totalScore+"分！敢不敢和我比？";
+				clearInterval(interval);
+				document.getElementById('show').style.display="none";
+				document.getElementById('tips').style.display="none";
+				document.getElementById('time').style.display="none";
+				document.getElementById('resultscore').innerText = totalScore;
+				document.getElementById('result').style.display="block";
+				document.getElementById('restart').style.display="block";
+			}
+		}
+
+		// 开始
+		var start = document.getElementById('start');
+		start.addEventListener('click',function(ev){
+			document.getElementById('start').style.display="none";
+			document.getElementById('tipsword').style.display="none";
+			document.getElementById('show').style.display="block";
+			document.getElementById('time').style.display="block";
+			
+			interval = setInterval(function(){update();},1000);
+			var shakeme = new Orientation();
+			shakeme.init();
+		},false);
+
+		// 开始
+		var restart = document.getElementById('restart');
+		restart.addEventListener('click',function(ev){
+			document.getElementById('rest').innerText="0";
+			document.getElementById('score').innerText="0";
+			document.getElementById('restart').style.display="none";
+			document.getElementById('result').style.display="none";
+			document.getElementById('show').style.display="block";
+			document.getElementById('time').style.display="block";
+			document.getElementById('tips').style.display="block";
+			time = 20;
+			totalScore = 0;
+			setInterval(function(){update();},1000);
+		},false);
+
+		// var shakeme = new Orientation();
+		// shakeme.init();
+	</script>
+</body>
+</html>

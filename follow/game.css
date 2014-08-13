@@ -1,0 +1,59 @@
+body{margin: 0;background-color: #000;}
+html{font-family: "Helvetica Neue", Helvetica, STHeiTi, Microsoft yahei, Arial, sans-serif; -ms-text-size-adjust: 100%; -webkit-text-size-adjust: 100%;}
+.hide{display: none!important;}
+
+header{height: 50px;width: 100%;background-color: #1abc9c;position: absolute;top: 0;color: yellow;text-align: center;font-size: 22px;line-height: 50px;}
+footer{height: 70px;width: 100%;background-color: #333;position: absolute;bottom: 0;line-height: 70px;color: yellow;font-size: 22px;text-align: center;}
+
+#loader{width: 100%;height: 2px;background-color: #2ecc71;position: absolute;top: 0;}
+.center{width: 100%;background-color: #000;height: 398px;position: relative;margin-top: 50px;text-align: center;border-color: #fff;}
+.center .block{width: 33%;height: 33%;}
+.start{color: #fff;width: 100%;height: 100%;text-decoration: none;display: block;font-size: 24px;background-color: #e74c3c;}
+.start:active{background-color: #3cedae;}
+.start:hover{background-color: #098879;}
+.first{background-color: #e74c3c;}
+.second{background-color: #1abc9c;}
+
+.result-wrap{position: absolute;top: 0;left: 0;background-color: rgba(0,0,0,0.8);width: 100%;height: 100%}
+.result-wrap p{position: absolute;width: 100%;color: #fff;text-align: center;top: 33%;font-size: 22px;}
+.result-wrap .share-btn,
+.result-wrap .again{color: #fff;text-decoration: none;position: absolute;top: 50%;left: 50%;background-color: #1abc9c;padding: 10px 15px;border-radius: 6px;
+	transform:translateX(-50%);-webkit-transform:translateX(-50%);-moz-transform:translateX(-50%);}
+.result-wrap .again{top: 60%;}
+
+.result-wrap .share-btn:hover,
+.result-wrap .again:hover,
+.result-wrap .again:active,
+.result-wrap .share-btn:active{background-color: #16a085;}
+
+.start-wrap{position: absolute;top: 0;left: 0;background-color: rgba(0,0,0,0.8);width: 100%;height: 100%}
+.start-wrap h1{text-align: center;color: #fff;margin: 0;position: absolute;width: 100%;top: 25%;}
+.start-wrap p{position: absolute;width: 100%;color: #fff;text-align: center;top: 33%;font-size: 18px;}
+.start-wrap .go-btn{text-decoration: none;position: absolute;top: 50%;left: 50%;padding: 10px 15px;
+	transform:translateX(-50%);-webkit-transform:translateX(-50%);-moz-transform:translateX(-50%);}
+
+.share-wrap{position: absolute;top: 0;left: 0;right: 0;bottom: 0;background-color: rgba(0,0,0,0.8);}
+.share-narrow{background-image: url(img/slice/narrow.32.png);display: inline-block;width: 60px;height: 60px;position: absolute;top: 10px;right: 30px;}
+.share-wrap .txt{font-size: 14px;color: #fff;position: absolute;right: 10px;top: 75px;}
+.share-wrap .cancel-btn{position: absolute;right: 28px;top: 100px;background-color: #16a085;color: #fff;padding: 5px 10px;border-radius: 4px;font-size: 14px;}
+
+.tonytony{background-image: url(img/slice/logo.32.png);width: 150px;height: 150px;display: inline-block;position: absolute;bottom: 5px;left: 50%;transform:translateX(-50%);-webkit-transform:translateX(-50%);}
+
+.btn{background-color: #3bb3e0;padding: 10px; position: relative; font-family: 'Open Sans', sans-serif; font-size: 12px; text-decoration: none; color: #fff;
+background-image: linear-gradient(bottom, rgb(44,160,202) 0%, rgb(62,184,229) 100%);
+background-image: -o-linear-gradient(bottom, rgb(44,160,202) 0%, rgb(62,184,229) 100%);
+background-image: -moz-linear-gradient(bottom, rgb(44,160,202) 0%, rgb(62,184,229) 100%);
+background-image: -webkit-linear-gradient(bottom, rgb(44,160,202) 0%, rgb(62,184,229) 100%);
+background-image: -ms-linear-gradient(bottom, rgb(44,160,202) 0%, rgb(62,184,229) 100%);
+background-image: -webkit-gradient( linear, left bottom, left top, color-stop(0, rgb(44,160,202)), color-stop(1, rgb(62,184,229)) );
+-webkit-box-shadow: inset 0px 1px 0px #7fd2f1, 0px 5px 0px #156785;
+-moz-box-shadow: inset 0px 1px 0px #7fd2f1, 0px 5px 0px #156785;
+-o-box-shadow: inset 0px 1px 0px #7fd2f1, 0px 5px 0px #156785;
+box-shadow: inset 0px 1px 0px #7fd2f1, 0px 5px 0px #156785;
+-webkit-border-radius: 5px;
+-moz-border-radius: 5px;
+-o-border-radius: 5px;
+border-radius: 5px;}
+
+.btn:hover,
+.btn:active{color:#156785;box-shadow: inset 0px 1px 0px #7fd2f1, inset 0px -1px 0px #156785;text-shadow: 0px 1px 1px rgba(255,255,855,0.3);}
